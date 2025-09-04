@@ -1,0 +1,6 @@
+services:
+  bot:
+    environment:
+      APP_ENV: staging
+      TELEGRAM_MODE: polling
+      LOG_LEVEL: DEBUG

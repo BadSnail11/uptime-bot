@@ -1,0 +1,19 @@
+version: "3.9"
+
+x-env: &default-env
+  env_file: [../../.env]
+  restart: always
+
+services:
+  bot:
+    build: 
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.bot
+    <<: *default-env
+    ports:
+      - "8001:8000"
+    # healthcheck:
+    #   test: ["CMD", "wget", "-qO-", "http://localhost:8000/healthz"]
+    #   interval: 10s
+    #   timeout: 3s
+    #   retries: 10
