@@ -4,7 +4,7 @@ import socket
 from datetime import datetime
 from urllib.parse import urlparse
 from typing import Dict, Any, Optional, Tuple
-from config import SSL_WARNING_THRESHOLD, DEFAULT_TIMEOUT
+from app.worker.config import SSL_WARNING_THRESHOLD, DEFAULT_TIMEOUT
 
 class WebsiteCheker:
     @staticmethod

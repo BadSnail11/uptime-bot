@@ -5,11 +5,20 @@ x-env: &default-env
   restart: always
 
 services:
+  redis:
+    image: redis:7-alpine
+    <<: *default-env
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+
   bot:
     build: 
       context: ../..
       dockerfile: deploy/docker/Dockerfile.bot
     <<: *default-env
+    depends_on:
+      - redis
     ports:
       - "8001:8000"
     # healthcheck:
@@ -17,3 +26,17 @@ services:
     #   interval: 10s
     #   timeout: 3s
     #   retries: 10
+
+  worker:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.worker
+    <<: *default-env
+    depends_on:
+      - redis
+    ports:
+      - "8002:8000"
+
+
+volumes:
+  redisdata:

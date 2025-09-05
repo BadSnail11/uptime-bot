@@ -1,10 +1,10 @@
 from celery import Celery
-from config import CELERY_BROKER_URL, CELERY_RESULT_BACKEND, CELERY_BEAT_SCHEDULE, CELERY_TIMEZONE
+from app.worker.config import CELERY_BROKER_URL, CELERY_RESULT_BACKEND, CELERY_BEAT_SCHEDULE, CELERY_TIMEZONE
 
 app = Celery('website_cheker',
              broker=CELERY_BROKER_URL,
              backend=CELERY_RESULT_BACKEND,
-             include=['tasks'])
+             include=['app.worker.tasks'])
 
 app.conf.update(
     timezone=CELERY_TIMEZONE,

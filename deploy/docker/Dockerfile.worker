@@ -10,8 +10,8 @@ COPY app/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
-COPY scripts/entrypoint.worker.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY scripts/entrypoint.worker.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 EXPOSE 8000
 # HEALTHCHECK --interval=10s --timeout=3s --retries=10 CMD wget -qO- http://localhost:8000/healthz || exit 1

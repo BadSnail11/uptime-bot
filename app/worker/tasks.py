@@ -1,5 +1,5 @@
 from celery import shared_task
-from checker import WebsiteCheker
+from app.worker.checker import WebsiteCheker
 import logging
 
 logger = logging.getLogger(__name__)
